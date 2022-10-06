@@ -1,0 +1,118 @@
+<html>
+
+<head>
+    <title>Python Flask Upload and display image</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+</head>
+
+
+<style>
+    table,
+    tr,
+    td {
+        border: 1px solid rgb(255, 255, 255);
+        border-collapse: collapse;
+    }
+</style>
+
+<body>
+    <p>
+    <h1 align="center">Find someone that you want</h1>
+    </p>
+    <div class="container">
+        <div class="row">
+            <table style="width: 80%;height: 200px;" align="center">
+                <tr>
+                    <th style="width: 50%;height: 2%;">
+                        <!-- input -->
+                    </th>
+                    <th style="width: 50%;height: 2%;">
+                        <!-- show -->
+                    </th>
+                </tr>
+                <tr>
+                    <td valign="top">
+                        <div>
+                            <label for="formFileMultiple" class="form-label">
+                                <h2>เลือกรูปของคนที่ต้องการหา</h2>
+                            </label>
+                            <form method="post" action="/" enctype="multipart/form-data">
+                                <dl>
+                                    <p>
+                                        <input type="file" name="file" class="form-control" autocomplete="off" required>
+                                    </p>
+                                </dl>
+                                <p>
+                                    <input type="submit" value="ยืนยัน" class="btn btn-info">
+                                </p>
+                            </form>
+
+                            <br>
+                            <label class="input-group-text" for="inputGroupSelect01">
+                                <h3>อาคารเรียนที่ต้องการหา</h3>
+                            </label>
+                            <br><br>
+                            <form method="post" action="/process" enctype="multipart/form-data">
+                                <p>
+                                    <label for="number">อาคารที่ต้องการ</label>
+                                    <select name="number" id="">
+                                        <option value="0">อาคาร 1</option>
+                                        <option value="1">อาคาร 2</option>
+                                        <option value="2">อาคาร 3</option>
+                                        <option value="3">อาคาร 4</option>
+                                    </select>
+                                    <input type="submit" value="ตามหา" class="btn btn-info">
+                                </p>
+                            </form>
+
+
+                        </div>
+                    <th rowspan="3" valign="center" style="text-align: center">
+                        {% if main_pic %}
+                        <img src="{{main_pic}}"style="height: auto;width: 300px;">
+                        {% endif %} 
+                        {% if filename %}
+                        <div>
+                            <img src="{{ url_for('display_image', filename=filename) }}" style="height: auto;width: 300px;">
+                        </div>
+                        {% endif %} 
+                        <br>
+                        {% if name %}
+                        <div>
+                            <img src="../static/uploads/{{name}}" style="height: auto;width: 300px;">
+                        </div>
+                        {% endif %}
+
+                    </th>
+                    </td>
+                </tr>
+            </table>
+            <!-- <div>
+            <img src="{{ url_for('display_image', filename=filename) }}">
+        </div>
+
+    <form method="post" action="/" enctype="multipart/form-data">
+        <dl>
+            <p>
+                <input type="file" name="file" class="form-control" autocomplete="off" required>
+            </p>
+        </dl>
+        <p>
+            <input type="submit" value="ยืนยัน" class="btn btn-info">
+        </p>
+    </form>
+
+    <form method="post" action="/process"enctype="multipart/form-data">
+        <p>
+            <label for="number">อาคารที่ต้องการ</label>
+            <input type="number" name="number" min="0" max="4" value="0">
+            <input type="submit" value="ตามหา" class="btn btn-info">
+
+        </p>
+    </form>
+</div>
+</div> -->
+</body>
+
+</html>
